@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<nav class="navbar navbar-expand-sm navbar-dark">
+    <div class="container">
+        <div class="box">
+            <div>
+                <img src="https://static10.tgstat.ru/channels/_0/0c/0c8cceaffdb83ce07230e847feb482d2.jpg" width="50"
+                    height="50" class="d-inline-block align-top rounded-circle" alt="">
+
+            </div>
+            <div>
+                <a class="navbar-brand ml-2" style="color: rgb(0, 0, 0); font-size: 25px;" href="#" data-abc="true">TATU
+                    Qarshi filiali</a>
+            </div>
+        </div>
+        <div class="box_icon">
+            <div>
+                <button mat-button color="dark" [routerLink]="['/']" class="boshqism">Bosh sahifa</button>
+                <!-- <button mat-button color="dark"  [routerLink]="['talentd']" class="boshqism">Iqtidorli talabalar</button> -->
+            </div>
+
+
+            <div>
+                <button mat-button color="dark" [routerLink]="['/student']" class="boshqism">Bizning faxrimiz</button>
+                <button mat-button color="dark" [routerLink]="['talentd']" class="boshqism">Iqtidorli talabalar</button>
+            </div>
+            <a [routerLink]="['/login']" class="icon">
+                <button mat-button color="dark">Kirish</button>
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container">
+
+    <article *ngFor="let s of talabalar" class="postcard light yellow">
+        <div class="col">
+            <img class="postcard__img" [src]="getRasm(s?.rasm)" alt="...">
+        </div>
+        <div class="postcard__text t-dark">
+            <h1 class="postcard__title yellow" style="cursor: pointer;">{{s?.ism}}</h1>
+            <h1 class="postcard__title yellow" style="cursor: pointer;">{{s?.familya}}</h1>
+            <h1 class="postcard__title yellow" style="cursor: pointer;">{{s?.sharif}}</h1>
+            <div class="postcard__bar" style="background-color: rgba(46, 46, 235, 0.671);"></div>
+            <div class="postcard__preview-txt">{{s?.guruh?.nom}}</div>
+            <div class="postcard__preview-txt">{{s?.guruh?.yunalish?.nom}}</div>
+            <div class="postcard__preview-txt">{{s?.guruh?.yunalish?.fakultet?.nom}}</div>
+            <ul class="postcard__tagbox">
+
+            </ul>
+        </div>
+
+    </article>
+
+
+</div>

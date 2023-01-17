@@ -1,0 +1,210 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Faxrli talabalar</mat-card-title>
+    <mat-card-subtitle>Talabalar bilan ishlash bo'limi </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-accordion displayMode="default" [multi]="true" [hideToggle]="false">
+      <mat-expansion-panel [hideToggle]="false">
+        <mat-expansion-panel-header>Yangi faxrli talaba qo'shish
+
+          <mat-icon class="mat-18">
+            add
+          </mat-icon>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="studentForm" (ngSubmit)="saqlash()">
+          <mat-form-field *ngIf='tahrirRejim' appearance="outline">
+            <mat-label>Id</mat-label>
+            <input formControlName='id' matInput placeholder="Id">
+            <mat-hint>Id</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Ism</mat-label>
+            <input  formControlName='ism' matInput placeholder="Ism"
+            minlength="3" maxlength="30">
+            <mat-hint>Ism</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Familya</mat-label>
+            <input  formControlName='familya' matInput placeholder="Familya" minlength="3" maxlength="30">
+            <mat-hint>Familya</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Sharif</mat-label>
+            <input  formControlName='sharif' matInput placeholder="Sharif" minlength="3" maxlength="40">
+            <mat-hint>Sharif</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Yashash joyi</mat-label>
+            <input   formControlName='hudud' matInput placeholder="Hudud" minlength="3">
+            <mat-hint>Hudud</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Yosh</mat-label>
+            <input formControlName='yosh' matInput placeholder="Yosh" min="1" max="17">
+            <mat-hint>Yosh</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Bo'yi</mat-label>
+            <input   formControlName='ishlashJoyi' matInput placeholder="Bo'yi" type="number">
+            <mat-hint>Bo'yi</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Vazn</mat-label>
+            <input  formControlName='info' matInput placeholder="Vazn">
+            <mat-hint>Vazn</mat-hint>
+          </mat-form-field>
+
+          
+           <!-- <mat-form-field appearance="outline">
+            <mat-label>Guruhlar</mat-label>
+            <mat-select name="guruh" id="guruh" formControlName="guruh" placeholder="">
+              <mat-option *ngFor="let d of guruhlar" [value]="d.id">{{d.nom}}</mat-option>
+            </mat-select>
+            <mat-hint>Guruhlar tanlang</mat-hint>
+          </mat-form-field>
+
+
+           <mat-form-field appearance="outline">
+            <mat-label>Yo'nalishlar</mat-label>
+            <mat-select name="yunalish" id="yunalish" formControlName="yunalish" placeholder="">
+              <mat-option *ngFor="let d of yunalishlar" [value]="d.id">{{d.nom}}</mat-option>
+            </mat-select>
+            <mat-hint>Yo'nalish tanlang</mat-hint>
+          </mat-form-field> -->
+
+
+<!-- 
+          <mat-form-field appearance="outline">
+            <mat-label>Talabaning O'quv shakli </mat-label>
+            <mat-select formControlName="oquvShakl" placeholder=" ">
+                <mat-option value="SHARTNOMA">Shartnoma asosida</mat-option>
+                <mat-option value="GRAND">Davlat granti asosida</mat-option>
+            </mat-select>
+            <mat-hint>Talaba O'quv shakli</mat-hint>
+        </mat-form-field> -->
+
+      
+
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Tug'ligan sana</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="oqishgaKirYil" matInput placeholder="Sana...">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="fill">
+            <mat-label>Ishni tugatgan sana</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="oqishTugYil " matInput placeholder="Sana...">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field> -->
+
+
+
+          <img class="img-account-profil rounded-circle mb-2"
+            [src]="rasmManzil??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoy14evimpQRK5-u3G2N76z2pyVisthKXoSCL4ThuDhxJcfMqWh3fyHTGRtaqJMeUgzg4&usqp=CAU'">
+
+          <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+          <button class="btn btn-primary" type="button" (click)="fileUpload.click()">Rasm yuklash</button>
+
+
+
+          <button [disabled]="surovBajarilmoqda" mat-raised-button color="primary" type='submit'>
+            <mat-spinner *ngIf="surovBajarilmoqda " diameter="30" color="accent"></mat-spinner>
+            Saqlash
+          </button>
+          <button mat-raised-button color="accent" type='reset'>Bekor qilish</button>
+
+        </form>
+
+        
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Filter</mat-label>
+      <input (input)="load($event.target)" matInput placeholder="Filter . . ." autocomplete="off">
+      <mat-hint>Kalit so'zni kiriting</mat-hint>
+    </mat-form-field>
+
+
+    <div class="royxat">
+      <h2>Talabalar Ro'yxati</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ism</th>
+            <th>Familya</th>
+            <th>Sharif</th>
+            <th>Hudud</th>
+            <th>Yosh</th>
+            <th>Bo'yi</th>
+            <th>Vazn</th>
+            <!-- <th>O'quv shakl</th> -->
+            <th>Tug'ligan sana</th>
+            <!-- <th>Ishni tugatgan yili</th> -->
+            <th>Amal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let x of studentlar">
+            <td>{{x?.id}}</td>
+            <td>{{x?.ism}}</td>
+            <td>{{x?.familya}}</td>
+            <td>{{x?.sharif}}</td>
+            <td>{{x?.hudud}}</td>
+            <td>{{x?.yosh}}</td>
+            <td>{{x?.ishlashJoyi}}</td>
+            <!-- <td>
+              <span [ngSwitch]="x?.oquvShakl">
+                  <span style="color: #ff0;" *ngSwitchCase="'SHARTNOMA'">
+                      Shartnoma asosida
+                  </span>
+                  <span style="color: #0f0;" *ngSwitchCase="'GRAND'">
+                      Davlat granti
+                  </span>
+                  <span *ngSwitchDefault>
+                      -
+                  </span>
+              </span>
+          </td> -->
+          <td>{{x?.info}}</td>
+            <td>{{x?.oqishgaKirYil}}</td>
+            <!-- <td>{{x?.oqishTugYil}}</td> -->
+
+            <td>
+              <button mat-button color="primary" (click)="tahrirlash(x)">
+                <mat-icon diametr=5>edit</mat-icon>
+              </button>
+              <button mat-button color="warn" (click)="ochirish(x)">
+                <mat-icon diametr=5>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <mat-paginator (page)="load()" #paginator [length]="length" [pageSize]="5" [pageSizeOptions]="[5, 7, 10, 12]"
+      aria-label="Select page">
+    </mat-paginator>
+
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,180 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Xona </mat-card-title>
+        <mat-card-subtitle>Xona bilan ishlash bo'limi</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-accordion color="light" displayMode="default" [multi]="true" [hideToggle]="false">
+            <mat-expansion-panel [hideToggle]="false" [(expanded)]="formOchiq">
+                <mat-expansion-panel-header>Yangi xona qo'shish
+                    <mat-icon class="mat-18">add</mat-icon>
+                </mat-expansion-panel-header>
+                <form [formGroup]="talabaForm" (ngSubmit)="saqlash()">
+                    <mat-form-field *ngIf='tahrirRejim' appearance="outline">
+                        <mat-label>ID</mat-label>
+                        <input formControlName="id" readonly matInput placeholder="ID" autocomplete="off">
+                        <mat-hint>ID</mat-hint>
+                    </mat-form-field>
+  
+                    <mat-form-field appearance="outline">
+                        <mat-label>Qavat</mat-label>
+                        <mat-hint>Qavatni kiriting</mat-hint>
+                        <input formControlName="yosh" matInput placeholder="Qavat..." autocomplete="off" type="number" min="1" max="10">
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Raqam</mat-label>
+                        <mat-hint>Xona raqamini kiriting</mat-hint>
+                        <input   formControlName="ism" matInput placeholder="Raqam ..." autocomplete="off" type="number" max="100" min="1">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Xona turi</mat-label>
+                        <mat-hint>Xona turini kiriting</mat-hint>
+                        <input   formControlName="familya" matInput placeholder="Xona turi..." autocomplete="off" maxlength="50" minlength="3">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Sig'im</mat-label>
+                        <mat-hint>Sig'imni kiriting</mat-hint>
+                        <input   formControlName="sharif" matInput placeholder="Sig'im..." autocomplete="off"    maxlength="30" minlength="1">
+                    </mat-form-field>
+
+
+
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Uzb. R rezidentlari uchun xona narxi ( sum )</mat-label>
+                        <mat-hint>Xona narxini kiriting</mat-hint>
+                        <input   formControlName="hudud" matInput placeholder="Narx..." type="number" autocomplete="off" min="10000">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Uzb. R rezidentlari bo'lmaganlar uchun xona narxi ( sum )</mat-label>
+                        <mat-hint>Xona narxini kiriting</mat-hint>
+                        <input   formControlName="ball" matInput placeholder="Narx..." type="number" autocomplete="off" min="10000">
+                    </mat-form-field>
+
+
+
+                  
+
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Info</mat-label>
+                        <mat-hint>Info kiriting</mat-hint>
+                        <input  formControlName="info" matInput placeholder="Info..." autocomplete="off">
+                    </mat-form-field>
+                    
+                  
+                       
+                        <!-- <mat-checkbox value="false" formControlName="talented" align="start"
+                                     [indeterminate]="false"
+                                     color="warn">
+                            Iqdidorli
+                        </mat-checkbox> -->
+
+          
+
+
+<!-- 
+                    <mat-form-field appearance="outline">
+                        <mat-label>Talabaning O'quv shakli </mat-label>
+                        <mat-select formControlName="oquvShakl" placeholder=" ">
+                            <mat-option value="SHARTNOMA">Shartnoma asosida</mat-option>
+                            <mat-option value="GRAND">Davlat granti asosida</mat-option>
+                        </mat-select>
+                        <mat-hint>Talaba O'quv shakli</mat-hint>
+                    </mat-form-field> -->
+
+                   
+
+                    <img class="img-account-profil rounded-circle mb-2"
+                        [src]="rasmManzil??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyZWy7kT6uc49fJN5Wavk-4quDzKwV6JLtGw&usqp=CAU'">
+
+                    <input type="file" class="file-input" (change)="onFileSelected($event)"      #fileUpload >
+                    <button class="btn btn-primary" type="button" (click)="fileUpload.click()" >Rasm yuklash</button>
+
+
+
+                    <button [disabled]="talabaForm.invalid || surovBajarilmoqda" mat-raised-button color="primary"
+                        type="submit">
+                        <mat-spinner *ngIf="surovBajarilmoqda" diameter="20" color="warn"></mat-spinner>
+                        Saqlash
+                    </button>
+                    <button mat-raised-button color="accent" type="reset" (click)="tozalash()">
+                        Bekor qilish</button>
+
+                </form>
+
+
+
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-form-field appearance="outline">
+            <mat-label>Filter</mat-label>
+            <input (input)="load($event.target)" matInput placeholder="Filter . . ." autocomplete="off">
+            <mat-hint>Kalit so'zni kiriting</mat-hint>
+        </mat-form-field>
+        <div class="royxat">
+            <h2>Xonalar Ro'yxati</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Qavat</th>
+                        <th>Xona raqami</th>
+                        <th>Xona turi </th>
+                        <th>Xona sig'imi</th>
+                        <th>Uzb. R rezidentlari uchun xona narxi ( sum )</th>
+                        <th>Uzb. R rezidentlari bo'lmaganlar uchun xona narxi ( sum )</th>
+                        <th>Info</th>
+                        <th>Amal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of talabalar">
+                        <td>{{x?.id}}</td>
+                        <td>{{x?.yosh}}</td>
+                        <td>{{x?.ism}}</td>
+                        <td>{{x?.familya}}</td>
+                        <td>{{x?.sharif}}</td>
+                        <td>{{x?.hudud}}</td>
+                        <td>{{x?.ball}}</td>
+                        <td>{{x?.info}}</td>
+                        <td>
+                            <button mat-button color="primary" (click)="tahrirlash(x)">
+                                <mat-icon diametr=5>edit</mat-icon>
+                            </button>
+                            <button mat-button color="warn" (click)="ochirish(x)">
+                                <mat-icon diametr=5>delete</mat-icon>
+                            </button>
+                            <button>
+
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!--  Chips ma'lumotlari bilan ishlash -->
+
+   
+
+
+
+
+        <mat-paginator (page)="load()" #paginator [length]="length" [pageSize]="5" [pageSizeOptions]="[5, 7, 10, 12]"
+            aria-label="Select page">
+        </mat-paginator>
+
+    </mat-card-content>
+
+</mat-card>

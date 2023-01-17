@@ -1,0 +1,100 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Guruh </mat-card-title>
+        <mat-card-subtitle>Guruh bilan ishlash bo'limi</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-accordion color="light" displayMode="default" [multi]="true" [hideToggle]="false">
+            <mat-expansion-panel [hideToggle]="false" [(expanded)]="formOchiq" >
+                <mat-expansion-panel-header>Yangi guruh qo'shish
+                    <mat-icon class="mat-18">add</mat-icon>
+                </mat-expansion-panel-header>
+                <form [formGroup]="guruhForm" (ngSubmit)="saqlash()">
+                    <mat-form-field *ngIf='tahrirRejim' appearance="outline">
+                        <mat-label>ID</mat-label>
+                        <input formControlName="id" readonly matInput placeholder="ID" autocomplete="off">
+                        <mat-hint>ID</mat-hint>
+                    </mat-form-field>
+  
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nom</mat-label>
+                        <mat-hint>Nom kiriting</mat-hint>
+                        <input  formControlName="nom" matInput placeholder="Nom..." autocomplete="off">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Yo'nalishlar</mat-label>
+                        <mat-select name="yunalish" id="yunalish" formControlName="yunalish" placeholder="">
+                          <mat-option *ngFor="let d of yunalishlar" [value]="d.id">{{d.nom}}</mat-option>
+                        </mat-select>
+                        <mat-hint>Yo'nalishlar tanlang</mat-hint>
+                      </mat-form-field>
+            
+  
+                    <mat-form-field appearance="outline">
+                        <mat-label>Info</mat-label>
+                        <textarea formControlName="info" matInput placeholder="info...">
+                    </textarea>
+                        <mat-hint>info</mat-hint>
+                    </mat-form-field>
+
+                    
+  
+                    <button [disabled]="guruhForm.invalid || surovBajarilmoqda" mat-raised-button color="primary"
+                        type="submit">
+                        <mat-spinner *ngIf="surovBajarilmoqda" diameter="20" color="warn"></mat-spinner>
+                        Saqlash
+                    </button>
+                    <button mat-raised-button color="accent" type="reset" (click)="tozalash()">
+                        Bekor qilish</button>
+                </form>
+  
+  
+  
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-form-field appearance="outline">
+          <mat-label>Filter</mat-label>
+          <input (input)="load($event.target)" matInput placeholder="Filter . . ." autocomplete="off">
+          <mat-hint>Kalit so'zni kiriting</mat-hint>
+        </mat-form-field>
+        <div class="royxat"  >
+          <h2>Guruhlar Ro'yxati</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nom</th>
+                      <th>Yo'nalishlar</th>
+                      <th>Info</th>
+                      <th>Amal</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let x of guruhlar">
+                      <td>{{x?.id}}</td>
+                      <td>{{x?.nom}}</td>
+                      <td>{{x?.yunalish?.nom}}</td>
+                      <td>{{x?.info}}</td>
+                      <td>
+                          <button mat-button color="primary" (click)="tahrirlash(x)">
+                              <mat-icon diametr=5>edit</mat-icon>
+                          </button>
+                          <button mat-button color="warn" (click)="ochirish(x)">
+                              <mat-icon diametr=5>delete</mat-icon>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  
+  
+  
+  
+      <mat-paginator (page)="load()" #paginator  [length]="length" [pageSize]="5" [pageSizeOptions]="[5, 7, 10, 12]" aria-label="Select page">
+      </mat-paginator>
+  
+  </mat-card-content>
+  
+  </mat-card>

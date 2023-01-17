@@ -1,0 +1,97 @@
+<mat-toolbar color="primary">
+
+    <mat-toolbar-row>
+        <span>Mehmonxona</span>
+        <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon class="mat-18">view_list</mat-icon>
+    </button>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+
+    </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer mode="side" opened="">
+        <mat-nav-list>
+<!-- 
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['dashboard']">
+                <mat-icon class="sidenav-icon">dashboard</mat-icon>
+                Bosh sahifa
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['guruh']">
+                <mat-icon>group</mat-icon>  
+                Guruhlar
+            </a>
+            <mat-divider></mat-divider>
+
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['yunalish']">
+                <mat-icon class="sidenav-icon">query_builder</mat-icon>
+                Yo'nalishlar
+            </a>
+            <mat-divider></mat-divider>
+
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['yutuq']">
+                <mat-icon class="sidenav-icon">verified_user</mat-icon>
+                Yutuqlar
+            </a>
+            <mat-divider></mat-divider> -->
+
+            <!-- <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['xarakter']">
+                <mat-icon>face</mat-icon>
+                Xarakterlar
+            </a>
+            <mat-divider></mat-divider> -->
+
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['talaba']">
+                <mat-icon>how_to_reg</mat-icon>
+                Xonalar
+            </a>
+            <mat-divider></mat-divider>
+
+            <!-- <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['student']">
+                <mat-icon>how_to_reg</mat-icon>
+                Studentlar
+            </a>
+            <mat-divider></mat-divider> -->
+
+<!-- 
+
+    Loyihalar 
+ -->
+            <!-- <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['loyiha']">
+                <mat-icon>desktop_windows</mat-icon>
+                Loyihalar
+            </a>
+            <mat-divider></mat-divider>
+
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['fakultet']">
+                <mat-icon>view_carousel</mat-icon>
+                Fakultetlar
+            </a>
+            <mat-divider></mat-divider> -->
+
+
+
+
+
+        </mat-nav-list>
+
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
+
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
