@@ -15,6 +15,7 @@ import { InfoComponent } from './public/info/info.component';
 import { StudentComponent } from './public/student/student.component';
 import { TalentdComponent } from './public/talentd/talentd.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { CarouselComponent } from './public/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {MatChipsModule} from '@angular/material/chips';
     InfoComponent,
     StudentComponent,
     TalentdComponent,
+    CarouselComponent,
     
     
   ],

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserRouteAccessGuard } from './core/user-access.guard';
+import { CarouselComponent } from './public/carousel/carousel.component';
 import { HomeComponent } from './public/home/home.component';
 import { InfoComponent } from './public/info/info.component';
 import { LoginComponent } from './public/login/login.component';
@@ -38,6 +39,9 @@ const routes: Routes = [
   {
     path:'talentd',
     component: TalentdComponent
+  },{
+    path:'card',
+    component:CarouselComponent
   }
 
 ];
