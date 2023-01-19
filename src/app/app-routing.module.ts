@@ -39,7 +39,8 @@ const routes: Routes = [
   {
     path:'talentd',
     component: TalentdComponent
-  },{
+  },
+  {
     path:'card',
     component:CarouselComponent
   }
